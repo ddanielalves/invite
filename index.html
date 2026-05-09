@@ -15,11 +15,20 @@
         }
 
         .scene {
-            padding-top: 30px;
             width: 100vw;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+        }
+
+        .passport-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform-origin: center center;
+            transform: scale(var(--passport-scale, 1));
         }
 
         .passport {
@@ -142,10 +151,17 @@
             font-size: 14px;
             color: #666;
             transition: opacity 0.4s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .scene.hint-visible .hint {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         /* Hide after opening */
-        .passport.opened~.hint {
+        .scene.opened .hint {
             opacity: 0;
             pointer-events: none;
         }
@@ -191,56 +207,6 @@
             transform: translateY(-2px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
         }
-
-        /* MOBILE */
-        @media (max-width: 768px) {
-
-            .scene {
-                justify-content: flex-start;
-                padding-top: 30px;
-                /* padding-bottom: 40px; */
-            }
-
-
-            .cta {
-                margin-top: 15px;
-                /* margin-bottom: 30px; */
-            }
-
-            .hint {
-                bottom: 20px;
-                font-size: 12px;
-            }
-
-            .title {
-                font-size: 14px;
-                letter-spacing: 2px;
-            }
-
-            .info {
-                margin-left: 32px;
-                margin-right: 30px;
-                padding-bottom: 25px;
-            }
-
-            .value {
-                font-size: 12px;
-            }
-
-            .photo img {
-                height: 90px;
-            }
-
-            .footer {
-                font-size: 7px;
-                line-height: 1.2;
-                right: 4px;
-                bottom: 6px;
-                max-height: 86%;
-                text-align: center;
-                white-space: nowrap;
-            }
-        }
     </style>
 </head>
 
@@ -248,76 +214,80 @@
 
     <div class="scene">
 
-        <div class="passport" id="passport">
+        <div class="passport-group" id="passportGroup">
 
-            <!-- COVER -->
-            <div class="cover">
-                <img src="cover.png" alt="Passport Cover">
-            </div>
+            <div class="passport" id="passport">
 
-            <!-- INSIDE -->
-            <div class="inside">
-                <div class="passport-page">
-
-                    <div class="title">PASSAPORTE PARA O CASAMENTO</div>
-
-                    <div class="info">
-                        <div class="row">
-                            <div class="label">PASSAPORT ID</div>
-                            <div class="value">0201222</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="label">NOME</div>
-                            <div class="value">Guilherme Castelo & Mariana Menino</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="label">DATA</div>
-                            <div class="value">30 de Agosto de 2026</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="label">HORA</div>
-                            <div class="value">13:30</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="label">LOCAL</div>
-                            <div class="value">Rua das Barruncheiras, Negráis<br>2715-316 Lisboa</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="label">CERIMÓNIA</div>
-                            <div class="value">Elegante</div>
-                        </div>
-
-                        <div class="photo">
-                            <img src="photo.jpg" alt="Wedding Location">
-                        </div>
-
-                        <div class="footer">
-                            &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; CHEERS
-                            &lt;&lt;&lt;&lt;&lt;&lt; 0202220
-                            &gt;&gt;&gt;&gt;&gt;
-                            SEE YOU THERE &lt;&lt;&lt;&lt;&lt;&lt; HAPPY
-                            COUPLE
-                            &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-                        </div>
-                    </div>
-
+                <!-- COVER -->
+                <div class="cover">
+                    <img src="cover.png" alt="Passport Cover">
                 </div>
-            </div>
 
-        </div>
+                <!-- INSIDE -->
+                <div class="inside">
+                    <div class="passport-page">
 
-        <!-- CTA OUTSIDE -->
-        <div class="cta">
-            <div class="cta-text">
-                Confirma a tua presença e prepara a viagem ✈️
-            </div>
-            <button onclick="goToRSVP()">Confirmar Presença</button>
-        </div>
+                        <div class="title">PASSAPORTE PARA O CASAMENTO</div>
+
+                        <div class="info">
+                            <div class="row">
+                                <div class="label">PASSAPORT ID</div>
+                                <div class="value">0201222</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="label">NOME</div>
+                                <div class="value">Guilherme Castelo & Mariana Menino</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="label">DATA</div>
+                                <div class="value">30 de Agosto de 2026</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="label">HORA</div>
+                                <div class="value">13:30</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="label">LOCAL</div>
+                                <div class="value">Rua das Barruncheiras, Negráis<br>2715-316 Lisboa</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="label">CERIMÓNIA</div>
+                                <div class="value">Elegante</div>
+                            </div>
+
+                            <div class="photo">
+                                <img src="photo.jpg" alt="Wedding Location">
+                            </div>
+
+                            <div class="footer">
+                                &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; CHEERS
+                                &lt;&lt;&lt;&lt;&lt;&lt; 0202220
+                                &gt;&gt;&gt;&gt;&gt;
+                                SEE YOU THERE &lt;&lt;&lt;&lt;&lt;&lt; HAPPY
+                                COUPLE
+                                &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div><!-- /.passport -->
+
+            <!-- CTA OUTSIDE -->
+            <div class="cta">
+                <div class="cta-text">
+                    Confirma a tua presença e prepara a viagem ✈️
+                </div>
+                <button onclick="goToRSVP()">Confirmar Presença</button>
+            </div><!-- /.cta -->
+
+        </div><!-- /.passport-group -->
 
         <div class="hint">Click to open</div>
 
@@ -325,14 +295,59 @@
 
     <script>
         const passport = document.getElementById("passport");
+        const passportGroup = document.getElementById("passportGroup");
+        const scene = document.querySelector(".scene");
+        const HINT_DELAY_MS = 1200;
+        let hintTimer;
+
+        function scheduleHint() {
+            clearTimeout(hintTimer);
+            scene.classList.remove("hint-visible");
+
+            if (passport.classList.contains("opened")) {
+                return;
+            }
+
+            hintTimer = setTimeout(() => {
+                if (!passport.classList.contains("opened")) {
+                    scene.classList.add("hint-visible");
+                }
+            }, HINT_DELAY_MS);
+        }
 
         passport.addEventListener("click", () => {
             passport.classList.toggle("opened");
+            scene.classList.toggle("opened", passport.classList.contains("opened"));
+
+            if (passport.classList.contains("opened")) {
+                clearTimeout(hintTimer);
+                scene.classList.remove("hint-visible");
+            } else {
+                scheduleHint();
+            }
         });
 
         function goToRSVP() {
-            window.location.href = "https://casamentodoano.base44.app/"; // update route if needed
+            window.location.href = "https://casamentodoano.base44.app/";
         }
+
+        // Proportional scaling based on viewport
+        const BASE_W = 380;
+        const BASE_H = 530;
+        const CTA_H = 110; // approx height of cta block
+
+        function updateScale() {
+            const availW = window.innerWidth * 0.92;
+            const availH = window.innerHeight * 0.92;
+            const scaleW = availW / BASE_W;
+            const scaleH = availH / (BASE_H + CTA_H);
+            const scale = Math.min(scaleW, scaleH, 1);
+            document.documentElement.style.setProperty('--passport-scale', scale);
+        }
+
+        updateScale();
+        scheduleHint();
+        window.addEventListener('resize', updateScale);
     </script>
 
 </body>
