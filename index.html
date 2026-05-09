@@ -69,6 +69,48 @@
             object-fit: cover;
         }
 
+        .cover-title-wrap {
+            position: absolute;
+            top: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 86%;
+            text-align: center;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .cover-title,
+        .cover-subtitle {
+            font-weight: 800;
+            text-transform: uppercase;
+            color: transparent;
+            background: linear-gradient(100deg,
+                    #6f5922 0%,
+                    #c9a349 18%,
+                    #f6e6a6 34%,
+                    #b88f32 52%,
+                    #f1db8f 72%,
+                    #7a6124 100%);
+            background-size: 260% 100%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+            animation: metalWave 4.2s linear infinite;
+        }
+
+        .cover-title {
+            font-size: 40px;
+            letter-spacing: 2px;
+            line-height: 1.02;
+        }
+
+        .cover-subtitle {
+            font-size: 18px;
+            letter-spacing: 1.6px;
+            margin-top: 4px;
+        }
+
         .inside {
             transform: rotateY(180deg);
             background: #f7f4ec;
@@ -283,6 +325,19 @@
                 right: 10px;
                 font-size: 9px;
             }
+
+            .cover-title-wrap {
+                top: 22px;
+                width: 90%;
+            }
+
+            .cover-title {
+                font-size: 38px;
+            }
+
+            .cover-subtitle {
+                font-size: 18px;
+            }
         }
 
         @keyframes ctaBounce {
@@ -314,6 +369,23 @@
                 transform: translateY(0) rotate(0deg) scale(1);
                 box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             }
+        }
+
+        @keyframes metalWave {
+            0% {
+                background-position: 0% 50%;
+                /* filter: brightness(0.96); */
+            }
+
+            100% {
+                background-position: 200% 50%;
+                /* filter: brightness(1.07); */
+            }
+
+            /* 100% {
+                background-position: 0% 50%;
+                filter: brightness(0.96);
+            } */
         }
 
         @media (max-width: 768px) {
@@ -348,6 +420,10 @@
                 <!-- COVER -->
                 <div class="cover">
                     <img src="cover.png" alt="Passport Cover">
+                    <div class="cover-title-wrap">
+                        <div class="cover-title">Passaporte</div>
+                        <div class="cover-subtitle">Convite de casamento</div>
+                    </div>
                 </div>
 
                 <!-- INSIDE -->
