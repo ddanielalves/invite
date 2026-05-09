@@ -67,6 +67,8 @@
             background-image: radial-gradient(#d8d2c4 1px, transparent 1px);
             background-size: 12px 12px;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .title {
@@ -121,14 +123,16 @@
             text-align: right;
             color: #666;
             letter-spacing: 1px;
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
+            margin-top: auto;
+            padding: 8px 10px 10px 0;
         }
 
         .hint {
-            position: absolute;
+            position: fixed;
             bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
             font-size: 14px;
             color: #666;
             transition: opacity 0.4s ease;
@@ -202,7 +206,7 @@
             }
 
             .hint {
-                bottom: 15px;
+                bottom: 20px;
                 font-size: 12px;
             }
 
@@ -226,8 +230,7 @@
             .footer {
                 font-size: 7px;
                 line-height: 1.2;
-                bottom: 6px;
-                right: 8px;
+                padding: 6px 8px 8px 0;
                 max-width: 120px;
                 text-align: right;
                 white-space: normal;
