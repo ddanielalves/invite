@@ -273,6 +273,10 @@
             .scene {
                 height: 92vh;
                 height: 92dvh;
+                padding-top: env(safe-area-inset-top, 16px);
+                box-sizing: border-box;
+                justify-content: flex-start;
+                padding-top: max(env(safe-area-inset-top), 20px);
             }
 
             .cta-text {
@@ -376,7 +380,7 @@
         const passportGroup = document.getElementById("passportGroup");
         const scene = document.querySelector(".scene");
         const versionBadge = document.getElementById("versionBadge");
-        const VERSION = "v1.2";
+        const VERSION = "v1.3";
         const HINT_DELAY_MS = 1200;
         let hintTimer;
 
@@ -419,8 +423,10 @@
         const CTA_H = 110; // approx height of cta block
 
         function updateScale() {
+            const isMobile = window.innerWidth <= 768;
+            const topPad = isMobile ? 20 : 0;
             const availW = window.innerWidth * 0.92;
-            const availH = window.innerHeight * 0.92;
+            const availH = (window.innerHeight * (isMobile ? 0.92 : 1)) - topPad;
             const scaleW = availW / BASE_W;
             const scaleH = availH / (BASE_H + CTA_H);
             const scale = Math.min(scaleW, scaleH, 1);
