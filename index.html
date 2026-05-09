@@ -72,9 +72,6 @@
             background: #f7f4ec;
             padding: 20px;
             box-sizing: border-box;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         .passport-page {
@@ -135,15 +132,63 @@
         }
 
         .footer {
-            font-size: 11px;
-            text-align: justify;
+            font-size: 9px;
             color: #666;
             letter-spacing: 0.8px;
-            line-height: 1.15;
+            line-height: 1.6;
             text-transform: uppercase;
             font-family: "Courier New", monospace;
-            margin-top: 8px;
-            overflow-wrap: anywhere;
+            position: absolute;
+            bottom: 8px;
+            left: 0;
+            right: 0;
+            padding: 0 4px;
+        }
+
+        .footer-row {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .footer-fill {
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            letter-spacing: 1px;
+        }
+
+        .footer-fill.left {
+            text-align: left;
+        }
+
+        .footer-fill.right {
+            text-align: right;
+        }
+
+        .footer-label {
+            padding: 0 5px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .footer-row.align-left .footer-label {
+            margin-right: auto;
+            padding-left: 0;
+        }
+
+        .footer-row.align-left .footer-fill.left {
+            display: none;
+        }
+
+        .footer-row.align-right .footer-label {
+            margin-left: auto;
+            padding-right: 0;
+        }
+
+        .footer-row.align-right .footer-fill.right {
+            display: none;
         }
 
         .hint {
@@ -345,11 +390,23 @@
                             </div>
 
                             <div class="footer">
-                                &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; CHEERS
-                                &lt;&lt;&lt;&lt;&lt;&lt; 0202220
-                                &gt;&gt;&gt;&gt;&gt; SEE YOU THERE &lt;&lt;&lt;&lt;
-                                &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; HAPPY COUPLE
-                                &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+                                <div class="footer-row align-left">
+                                    <span class="footer-label">✈ CHEERS TO THE HAPPY COUPLE</span>
+                                    <span
+                                        class="footer-fill right">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span>
+                                </div>
+                                <div class="footer-row">
+                                    <span
+                                        class="footer-fill left">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span>
+                                    <span class="footer-label">SEE YOU THERE</span>
+                                    <span
+                                        class="footer-fill right">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span>
+                                </div>
+                                <div class="footer-row align-right">
+                                    <span
+                                        class="footer-fill left">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span>
+                                    <span class="footer-label">BON VOYAGE ✈</span>
+                                </div>
                             </div>
                         </div>
 
@@ -379,7 +436,7 @@
         const passportGroup = document.getElementById("passportGroup");
         const scene = document.querySelector(".scene");
         const versionBadge = document.getElementById("versionBadge");
-        const VERSION = "v1.4";
+        const VERSION = "v1.5";
         const HINT_DELAY_MS = 1200;
         let hintTimer;
 
