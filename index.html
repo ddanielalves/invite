@@ -216,6 +216,27 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
         }
 
+        .version-badge {
+            position: fixed;
+            top: 10px;
+            right: 12px;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            color: rgba(102, 102, 102, 0.7);
+            font-family: "Courier New", monospace;
+            pointer-events: none;
+            z-index: 10;
+            user-select: none;
+        }
+
+        @media (max-width: 768px) {
+            .version-badge {
+                top: 8px;
+                right: 10px;
+                font-size: 9px;
+            }
+        }
+
         @keyframes ctaBounce {
 
             0% {
@@ -344,12 +365,16 @@
 
         <div class="hint">Click to open</div>
 
+        <div class="version-badge" id="versionBadge"></div>
+
     </div>
 
     <script>
         const passport = document.getElementById("passport");
         const passportGroup = document.getElementById("passportGroup");
         const scene = document.querySelector(".scene");
+        const versionBadge = document.getElementById("versionBadge");
+        const VERSION = "v1.1";
         const HINT_DELAY_MS = 1200;
         let hintTimer;
 
@@ -383,6 +408,8 @@
         function goToRSVP() {
             window.location.href = "https://casamentodoano.base44.app/";
         }
+
+        versionBadge.textContent = VERSION;
 
         // Proportional scaling based on viewport
         const BASE_W = 380;
