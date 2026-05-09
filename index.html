@@ -39,7 +39,7 @@
 
         .passport {
             width: 380px;
-            height: 530px;
+            height: 540px;
             position: relative;
             transform-style: preserve-3d;
             cursor: pointer;
@@ -271,9 +271,8 @@
 
         @media (max-width: 768px) {
             .scene {
-                height: 92vh;
-                height: 92dvh;
-                padding-top: env(safe-area-inset-top, 16px);
+                /* height: 92vh; */
+                /* height: 92dvh; */
                 box-sizing: border-box;
                 justify-content: flex-start;
                 padding-top: max(env(safe-area-inset-top), 20px);
@@ -380,7 +379,7 @@
         const passportGroup = document.getElementById("passportGroup");
         const scene = document.querySelector(".scene");
         const versionBadge = document.getElementById("versionBadge");
-        const VERSION = "v1.3";
+        const VERSION = "v1.4";
         const HINT_DELAY_MS = 1200;
         let hintTimer;
 
@@ -419,7 +418,7 @@
 
         // Proportional scaling based on viewport
         const BASE_W = 380;
-        const BASE_H = 530;
+        const BASE_H = 540;
         const CTA_H = 110; // approx height of cta block
 
         function updateScale() {
