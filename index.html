@@ -7,6 +7,11 @@
     <title>Wedding Passport Invite</title>
 
     <style>
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
         body {
             margin: 0;
             background: #e9ece6;
@@ -132,14 +137,12 @@
             font-size: 11px;
             text-align: justify;
             color: #666;
-            letter-spacing: 1px;
-            position: relative;
+            letter-spacing: 0.8px;
+            line-height: 1.15;
             text-transform: uppercase;
             font-family: "Courier New", monospace;
-
-            top: 15px;
-            /* right: 8px; */
-            /* white-space: nowrap; */
+            margin-top: 8px;
+            overflow-wrap: anywhere;
         }
 
         .hint {
@@ -211,6 +214,11 @@
         @media (max-width: 768px) {
             .cta-text {
                 font-size: 13px;
+            }
+
+            .footer {
+                font-size: 11px;
+                line-height: 1.1;
             }
         }
     </style>
