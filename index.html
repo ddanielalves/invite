@@ -27,6 +27,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            /* Added perspective to the scene to help iOS render 3D depth */
+            perspective: 1200px;
+            -webkit-perspective: 1200px;
         }
 
         .passport-group {
@@ -35,6 +38,9 @@
             align-items: center;
             transform-origin: center center;
             transform: scale(var(--passport-scale, 1));
+            /* Ensure child 3D properties are respected */
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
         }
 
         .passport {
@@ -45,15 +51,29 @@
             -webkit-transform-style: preserve-3d;
             cursor: pointer;
             transition: transform 2.5s ease;
-            -webkit-perspective: 1000px;
-            perspective: 1000px;
         }
 
         .passport.opened {
             transform: rotateY(-180deg);
         }
 
-        .cover,
+        .cover {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+            z-index: 2;
+            /* Force this to the front plane */
+            transform: translateZ(2px);
+            -webkit-transform: translateZ(2px);
+        }
+
         .inside {
             position: absolute;
             width: 100%;
@@ -65,6 +85,13 @@
             align-items: center;
             overflow: hidden;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+            background: #f7f4ec;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 1;
+            /* Rotate and sit slightly behind the cover plane */
+            transform: rotateY(180deg) translateZ(1px);
+            -webkit-transform: rotateY(180deg) translateZ(1px);
         }
 
         .cover img {
@@ -77,13 +104,17 @@
             position: absolute;
             top: 35px;
             left: 50%;
-            transform: translateX(-50%);
             width: 86%;
             text-align: center;
             pointer-events: none;
-            z-index: 2;
+            z-index: 10;
+            /* CRITICAL FIX: Push title forward so it's not on the same plane as the back */
+            transform: translateX(-50%) translateZ(5px);
+            -webkit-transform: translateX(-50%) translateZ(5px);
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
         }
 
         .cover-title,
@@ -103,17 +134,16 @@
             -webkit-background-clip: text;
             text-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
             animation: metalWave 5.2s ease-in-out infinite alternate;
-        }
-
-        .cover-title-wrap,
-        .cover-title,
-        .cover-subtitle {
+            /* Extra insurance for animated text on iOS */
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            /* This helps WebKit understand it belongs to the parent's 3D context */
-            transform-style: preserve-3d;
-            -webkit-transform-style: preserve-3d;
         }
+
+        /* Ensure animation doesn't force a 'ghost' layer when opened */
+        /* .passport.opened .cover-title,
+        .passport.opened .cover-subtitle {
+            animation: none;
+        } */
 
         .cover-title {
             font-size: 40px;
@@ -125,14 +155,6 @@
             font-size: 18px;
             letter-spacing: 1.6px;
             margin-top: 4px;
-        }
-
-        .inside {
-            transform: rotateY(180deg);
-            -webkit-transform: rotateY(180deg);
-            background: #f7f4ec;
-            padding: 20px;
-            box-sizing: border-box;
         }
 
         .passport-page {
@@ -270,13 +292,11 @@
             pointer-events: auto;
         }
 
-        /* Hide after opening */
         .scene.opened .hint {
             opacity: 0;
             pointer-events: none;
         }
 
-        /* CTA OUTSIDE */
         .cta {
             margin-top: 20px;
             text-align: center;
@@ -346,6 +366,9 @@
             .cover-title-wrap {
                 top: 22px;
                 width: 90%;
+                /* Adjusted scale for mobile while maintaining Z-push */
+                transform: translateX(-50%) translateZ(5px);
+                -webkit-transform: translateX(-50%) translateZ(5px);
             }
 
             .cover-title {
@@ -358,7 +381,6 @@
         }
 
         @keyframes ctaBounce {
-
             0% {
                 transform: translateY(0) rotate(0deg) scale(1);
                 box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
@@ -381,7 +403,6 @@
                 transform: translateY(0) rotate(0deg) scale(1);
             }
 
-            /* idle time */
             100% {
                 transform: translateY(0) rotate(0deg) scale(1);
                 box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
@@ -402,8 +423,6 @@
 
         @media (max-width: 768px) {
             .scene {
-                /* height: 92vh; */
-                /* height: 92dvh; */
                 box-sizing: border-box;
                 justify-content: flex-start;
                 padding-top: max(env(safe-area-inset-top), 20px);
@@ -466,7 +485,7 @@
         const passportGroup = document.getElementById("passportGroup");
         const scene = document.querySelector(".scene");
         const versionBadge = document.getElementById("versionBadge");
-        const VERSION = "v2.3";
+        const VERSION = "v2.4";
         const HINT_DELAY_MS = 1200;
         let hintTimer;
 
