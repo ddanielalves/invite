@@ -80,6 +80,8 @@
             text-align: center;
             pointer-events: none;
             z-index: 2;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         .cover-title,
@@ -452,7 +454,7 @@
         const passportGroup = document.getElementById("passportGroup");
         const scene = document.querySelector(".scene");
         const versionBadge = document.getElementById("versionBadge");
-        const VERSION = "v2.1";
+        const VERSION = "v2.2";
         const HINT_DELAY_MS = 1200;
         let hintTimer;
 
