@@ -96,7 +96,7 @@
             background-clip: text;
             -webkit-background-clip: text;
             text-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
-            animation: metalWave 4.2s linear infinite;
+            animation: metalWave 4.2s ease-in-out infinite alternate;
         }
 
         .cover-title {
@@ -378,14 +378,9 @@
             }
 
             100% {
-                background-position: 200% 50%;
+                background-position: 260% 50%;
                 filter: brightness(1.07);
             }
-
-            /* 100% {
-                background-position: 0% 50%;
-                filter: brightness(0.96);
-            } */
         }
 
         @media (max-width: 768px) {
