@@ -45,6 +45,8 @@
             -webkit-transform-style: preserve-3d;
             cursor: pointer;
             transition: transform 2.5s ease;
+            -webkit-perspective: 1000px;
+            perspective: 1000px;
         }
 
         .passport.opened {
@@ -100,7 +102,17 @@
             background-clip: text;
             -webkit-background-clip: text;
             text-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
-            animation: metalWave 4.2s ease-in-out infinite alternate;
+            animation: metalWave 5.2s ease-in-out infinite alternate;
+        }
+
+        .cover-title-wrap,
+        .cover-title,
+        .cover-subtitle {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            /* This helps WebKit understand it belongs to the parent's 3D context */
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
         }
 
         .cover-title {
@@ -454,7 +466,7 @@
         const passportGroup = document.getElementById("passportGroup");
         const scene = document.querySelector(".scene");
         const versionBadge = document.getElementById("versionBadge");
-        const VERSION = "v2.2";
+        const VERSION = "v2.3";
         const HINT_DELAY_MS = 1200;
         let hintTimer;
 
