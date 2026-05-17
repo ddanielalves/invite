@@ -139,41 +139,6 @@
             -webkit-backface-visibility: hidden;
         }
 
-        .cover-world {
-            width: 650px;
-            height: 180px;
-            margin-top: 54px;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            display: block;
-            overflow: visible;
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-            background: center / contain no-repeat url("world.svg");
-            filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.18));
-            isolation: isolate;
-        }
-
-        .cover-world::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(100deg,
-                    #6f5922 0%,
-                    #c9a349 18%,
-                    #f6e6a6 34%,
-                    #b88f32 52%,
-                    #f1db8f 72%,
-                    #7a6124 100%);
-            background-size: 260% 100%;
-            animation: metalWave 5.2s ease-in-out infinite alternate;
-            -webkit-mask: center / contain no-repeat url("world.svg");
-            mask: center / contain no-repeat url("world.svg");
-            mix-blend-mode: color;
-            opacity: 0.90;
-        }
-
         /* Ensure animation doesn't force a 'ghost' layer when opened */
         /* .passport.opened .cover-title,
         .passport.opened .cover-subtitle {
@@ -485,11 +450,10 @@
 
                 <!-- COVER -->
                 <div class="cover">
-                    <img src="cover-2.png" alt="Passport Cover">
+                    <img src="cover.png" alt="Passport Cover">
                     <div class="cover-title-wrap">
                         <div class="cover-title">Passaporte</div>
                         <div class="cover-subtitle">Convite de casamento</div>
-                        <div class="cover-world" aria-hidden="true"></div>
                     </div>
                 </div>
 
